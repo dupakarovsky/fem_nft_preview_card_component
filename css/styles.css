@@ -1,0 +1,216 @@
+/*
+///////////////////////////////////////
+//  GOOGLE FONTS: OUTFIT
+*/
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;700&display=swap");
+/*
+///////////////////////////////////////
+/// GENERAL RESET & CUSTOM PROPERTIES
+*/
+*,
+*::before,
+*::after {
+   margin: 0;
+   padding: 0;
+   box-sizing: inherit;
+}
+
+:root {
+   /* Font Size Default: 10px */
+   font-size: 62.5%;
+   /* Font Family */
+   --ff-prim: "Outfit", sans-serif;
+   /* Font Weights */
+   --fw-light: 300;
+   --fw-reg: 400;
+   --fw-bold: 700;
+   /* Colors */
+   --main: 217, 54%, 11%; /*hsl(217, 54%, 11%)*/
+   --card: 216, 50%, 16%; /*hsl(216, 50%, 16%);*/
+   --line: 215, 32%, 27%; /*hsl(215, 32%, 27%);*/
+   --white: 0, 0%, 100%; /*hsl(0, 0%, 100%)*/
+   --soft-blue: 215, 51%, 70%; /* hsl(215, 51%, 70%);*/
+   --cyan: 178, 100%, 50%; /*hsl(178, 100%, 50%);*/
+}
+
+html {
+   scroll-behavior: smooth;
+}
+body {
+   box-sizing: border-box;
+   font-family: var(--ff-prim);
+   line-height: 1.5;
+}
+img {
+   max-width: 100%;
+   display: block;
+}
+input,
+textarea,
+button,
+select {
+   font-family: inherit;
+}
+h1,
+h2,
+h3,
+h4 {
+   font-family: inherit;
+}
+
+/*
+//////////////////////////////
+// LAYOUT
+*/
+.main {
+   width: 100%;
+   height: 100vh;
+   background-color: hsl(var(--main));
+}
+
+/*
+//////////////////////////
+// UTILITY
+*/
+.flex {
+   /* FLEX CONTAINER for .card */
+   display: flex;
+}
+.flex--center {
+   align-items: center;
+   justify-content: center;
+}
+.flex--column {
+   flex-direction: column;
+}
+/* 
+///////////////////////////////
+//  MAIN BLOCK
+*/
+.card {
+   max-width: 36rem;
+   /* min-height: 64rem; */
+   background-color: hsl(var(--card));
+   padding: 2.2rem;
+   border-radius: 1.75rem;
+   box-shadow: 0 1rem 4rem 1.5rem hsl(0, 0%, 0%, 0.25);
+   /* FLEX CONTAINER for card__img / card__title / card__text / card_creator */
+   row-gap: 2rem;
+}
+
+/* 
+///////////////////////////////
+//  CARD BLOCK
+*/
+.card__img-cont {
+   border-radius: 1rem;
+   overflow: hidden;
+   cursor: pointer;
+   /* RELATIVE to card__img-cont::before*/
+   position: relative;
+}
+.card__img-cont::before {
+   content: "";
+   display: block;
+   background-color: hsl(var(--cyan), 0.5);
+   /* ABSOLUTE to card__img_cont*/
+   position: absolute;
+   inset: 0;
+   opacity: 0;
+   z-index: 2;
+   /* TRANSITION from card__img-cont:hover */
+   transition: opacity 250ms;
+}
+.card__img-cont::after {
+   content: "";
+   display: block;
+   width: 5rem;
+   height: 5rem;
+   background-image: url(/images/icon-view.svg);
+   /* ABSOLUTE to card__img_cont*/
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   opacity: 0;
+   z-index: 3;
+   /* TRANSITION from card__img-cont:hover */
+   transition: opacity 250ms;
+}
+.card__img-cont:hover::after,
+.card__img-cont:hover::before {
+   opacity: 1;
+}
+
+.card__title {
+   font-size: 2rem;
+   color: hsl(var(--white));
+   font-weight: var(--fw-bold);
+   cursor: pointer;
+   /* TRANSITION from card__text:hover */
+   transition: color 250ms;
+}
+.card__title:hover {
+   color: hsl(var(--cyan));
+}
+
+.card__text {
+   font-size: 1.8rem;
+   color: hsl(var(--soft-blue));
+}
+.card__info {
+   /*  FLEX CONTAINER for card__price / card__itme */
+   align-items: center;
+   justify-content: space-between;
+}
+.card__creator {
+   border-top: 1px solid hsl(var(--line));
+   padding-block: 1.5rem;
+   /*FLEX CONTAINER for creator__imng / creator__text */
+   align-items: center;
+   column-gap: 2rem;
+}
+/* 
+///////////////////////////////
+//  CARD INFO BLOCK
+*/
+.info__price {
+   color: hsl(var(--cyan));
+   font-size: 1.6rem;
+   /*FLEX CONTAINER for price__icon / price__text */
+   display: flex;
+   align-items: center;
+   gap: 1rem;
+}
+.info__time {
+   color: hsl(var(--soft-blue));
+   font-size: 1.6rem;
+   /*FLEX CONTAINER for time__icon / time__text */
+   display: flex;
+   align-items: center;
+   gap: 1rem;
+}
+
+/* 
+///////////////////////////////
+//  CARD CREATOR BLOCK
+*/
+.creator__img {
+   width: 3rem;
+   height: 3rem;
+   border: 1px solid white;
+   border-radius: 50%;
+}
+.creator__text {
+   color: hsl(var(--soft-blue));
+   font-size: 1.8rem;
+}
+.creator__text > span {
+   color: hsl(var(--white));
+   cursor: pointer;
+   /* TRANSITION from creator__text:hover */
+   transition: color 250ms;
+}
+.creator__text:hover > span {
+   color: hsl(var(--cyan));
+}
